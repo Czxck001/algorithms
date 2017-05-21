@@ -57,11 +57,12 @@ Cvec<T> fft(const Cvec<T> &x) {
 
 template<typename T>
 Cvec<T> ifft(const Cvec<T> &X) {
-  auto x = fft(X);
+  auto x0 = fft(X);
+  auto x = x0;
   auto N = static_cast<T>(x.size());
 
   for (auto i = 1; i < N; i++) {
-    x[i] = 1.0 / N * x[N - i];
+    x[i] = 1.0 / N * x0[N - i];
   }
   return x;
 }
