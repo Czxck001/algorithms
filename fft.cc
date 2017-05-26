@@ -1,5 +1,6 @@
 // Fast Fourier Transform (FFT)
 // Author: Czxck001 (github.com/Czxck001)
+// g++ -std=c++11 fft.cc -o fft
 
 #include <iostream>
 #include <cmath>
@@ -9,10 +10,10 @@
 using namespace std::complex_literals;
 const double PI = 3.1415926535897;
 
-template<typename T>
-using Cvec = std::vector<std::complex<T>>;
+template <typename T>
+using CVec = std::vector<std::complex<T>>;
 
-template<typename T>
+template <typename T>
 inline std::complex<T> cru(const int k, const int N) {
   // kth complex root of unity e ^ (i2Pi * (k / N))
   auto Tk = static_cast<T>(k);
@@ -20,8 +21,8 @@ inline std::complex<T> cru(const int k, const int N) {
   return std::exp((2 * PI * 1i * Tk) / TN);
 }
 
-template<typename T>
-Cvec<T> fft(const Cvec<T> &x) {
+template <typename T>
+CVec<T> fft(const CVec<T> &x) {
   // X[k] = E[k] + g^k * O[k]
 
   auto N = x.size();
@@ -32,8 +33,8 @@ Cvec<T> fft(const Cvec<T> &x) {
   }
 
   // subdivide the signal into even part and odd part
-  auto e = Cvec<T>();
-  auto o = Cvec<T>();
+  auto e = CVec<T>();
+  auto o = CVec<T>();
   for (auto i = 0; i < N; i++) {
     if (i % 2 == 0) {
       e.push_back(x[i]);
@@ -47,7 +48,7 @@ Cvec<T> fft(const Cvec<T> &x) {
   auto O = fft(o);
 
   // calculate the spectrum from the sub-spectrums
-  auto X = Cvec<T>();
+  auto X = CVec<T>();
   for (auto k = 0; k < N; k++) {
     X.push_back(E[k % M] + cru<T>(k, N) * O[k % M]);
   }
@@ -55,8 +56,8 @@ Cvec<T> fft(const Cvec<T> &x) {
   return X;
 }
 
-template<typename T>
-Cvec<T> ifft(const Cvec<T> &X) {
+template <typename T>
+CVec<T> ifft(const CVec<T> &X) {
   auto x0 = fft(X);
   auto x = x0;
   auto N = static_cast<T>(x.size());
@@ -70,7 +71,7 @@ Cvec<T> ifft(const Cvec<T> &X) {
 
 
 int main() {
-  auto x = Cvec<double>{0, 0, 0, 0, 1, 1, 1, 1};
+  auto x = CVec<double>{0, 0, 0, 0, 1, 1, 1, 1};
   for (auto xi: x) {
     std::cout << xi << std::endl;
   }
