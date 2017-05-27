@@ -16,7 +16,7 @@ template <typename T>
 using VIter = typename std::vector<T>::iterator;
 
 template <typename T>
-T medianOfGroup(VIter<T> l, VIter<T> r) {
+auto medianOfGroup(VIter<T> l, VIter<T> r) {
   // brutally get the median of a group A
   auto medLoc = l + GROUPSIZE / 2;
   for (auto i = l; i != medLoc + 1; ++i) {
@@ -32,7 +32,7 @@ T medianOfGroup(VIter<T> l, VIter<T> r) {
 }
 
 template <typename T>
-VIter<T> partition(VIter<T> l, VIter<T> r, T P) {
+auto partition(VIter<T> l, VIter<T> r, T P) {
   auto p = l;
   while (*p != P) ++p;  // find the pivot index
   assert(p != r);
@@ -80,7 +80,7 @@ T protoSelect(VIter<T> l, VIter<T> r, int k) {
 }
 
 template <typename T>
-T Select(VIter<T> l, VIter<T> r, int k) {
+auto Select(VIter<T> l, VIter<T> r, int k) {
   auto B = std::vector<T>(l, r);
   return protoSelect<T>(B.begin(), B.end(), k);
 }
