@@ -1,6 +1,6 @@
 // Fast Fourier Transform (FFT)
 // Author: Czxck001 (github.com/Czxck001)
-// g++ -std=c++11 fft.cc -o fft
+// g++ -std=c++14 fft.cc -o fft
 
 #include <iostream>
 #include <cmath>
@@ -8,13 +8,13 @@
 #include <complex>
 
 using namespace std::complex_literals;
-const double PI = 3.1415926535897;
+constexpr double PI = 3.1415926535897;
 
 template <typename T>
 using CVec = std::vector<std::complex<T>>;
 
 template <typename T>
-inline std::complex<T> cru(const int k, const int N) {
+inline auto cru(const int k, const int N) {
   // kth complex root of unity e ^ (i2Pi * (k / N))
   auto Tk = static_cast<T>(k);
   auto TN = static_cast<T>(N);
@@ -22,7 +22,7 @@ inline std::complex<T> cru(const int k, const int N) {
 }
 
 template <typename T>
-CVec<T> fft(const CVec<T> &x) {
+auto fft(const CVec<T> &x) {
   // X[k] = E[k] + g^k * O[k]
 
   auto N = x.size();
@@ -57,7 +57,7 @@ CVec<T> fft(const CVec<T> &x) {
 }
 
 template <typename T>
-CVec<T> ifft(const CVec<T> &X) {
+auto ifft(const CVec<T> &X) {
   auto x0 = fft(X);
   auto x = x0;
   auto N = static_cast<T>(x.size());

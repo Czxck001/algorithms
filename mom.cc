@@ -8,7 +8,7 @@
 #include <vector>
 #include <algorithm>
 
-const int GROUPSIZE = 5;
+constexpr int GROUPSIZE = 5;
 
 // need ‘typename’ before ‘std::vector<_RealType>::iterator’
 // because ‘std::vector<_RealType>’ is a dependent scope
