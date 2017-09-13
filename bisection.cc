@@ -8,8 +8,9 @@ int bisection(int *a, int n, int val) {
   // Convention of range: left-closed and right-open.
   int l = 0, r = n;
 
-  // End condition: only one element in range a[l:r].
-  while (l < r - 1) {
+  // End condition: a[l:r] size is equal to one
+  // => Loop Condition: a[l:r] size is more than one
+  while (r - l > 1) {
     // When the size is odd, a[l:m] is one element smaller than a[m:r].
     int m = (l + r) / 2;
 
