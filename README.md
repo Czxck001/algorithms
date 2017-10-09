@@ -3,7 +3,7 @@ Algorithms
 
 ## Gist of FFT
 ### Crucial Feature
-Discrete Fourier Transform (FFT) is defined as the discrete Z-transform sampled at each root of unity.
+Discrete Fourier Transform (DFT) is defined as the discrete Z-transform sampled at each root of unity.
 
 ```
 F(k) = sigma{i, N} f(i) * z^i
@@ -13,7 +13,7 @@ F(k) = sigma{i, N} f(i) * z^i
 ```
 where `RU(N, i)` is Nth root of unity to i.
 
-It has following feature, which is crutial to FFT algorithm.
+It has following feature, which leads to Fast Fourier Transform (FFT) algorithm.
 ```
 F(k) = Fe(k) + RU(N, k) * Fo(k)
 ```
