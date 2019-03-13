@@ -1,21 +1,21 @@
 # algorithms
 Cool algorithms + implementations.
 
-## FFT in nutshell
+## FFT in a nutshell
 ### Crucial Feature of DFT
-Discrete Fourier Transform (DFT) is defined as the discrete Z-transform sampled at each root of unity.
+[Discrete Fourier Transform (DFT)](https://en.wikipedia.org/wiki/Discrete_Fourier_transform) is defined as the discrete Z-transform sampled at each root of unity.
 
 $ F(k) = \sum_{n=0}^N f(n) z^n =  \sum_{n=0}^N f(n) U_N^{nk}​$
 
-where $U_N^m = \exp(\frac{2\pi mi}{N})$ is m-th unity root of order N.
+where $U_N = \exp(\frac{2\pi i}{N})$ is the [N-th root of unity](https://en.wikipedia.org/wiki/Root_of_unity).
 
-It has the following feature, which leads to Fast Fourier Transform (FFT) algorithm:
+It has the following feature, which leads to [Fast Fourier Transform (FFT)](https://en.wikipedia.org/wiki/Fast_Fourier_transform) algorithm:
 
-$F(k) = F_e(k) + U_N^k F_o(k),$
+$F(k) = F_e(k) + U_N^k F_o(k),​$
 
 where $F_e(k) = \sum_{n=0}^{N/2} f(2n) U_{N/2}^{nk}$, $F_o(k) = \sum_{n=0}^{N/2} f(2n+1) U_{N/2}^{nk}$.
 
-Note that $F_e(k)​$ and $F_o(k)​$ can be calculated by recursively applying FFT to even and odd subsequences of original signal $f(t)​$.
+The $F_e(k)$ and $F_o(k)$ are defined and can be calculated by recursively applying FFT to even and odd subsequences of original signal $f(t)​$.
 
 ### Proof
 Replacing $U_{N/2}​$ in $F_e(k)​$ and $F_o(k)​$ by the following observation:
